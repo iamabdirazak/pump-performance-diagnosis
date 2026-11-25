@@ -1,0 +1,64 @@
+{
+  "learned": {
+    "wear": {
+      "lead_days": 30.8,
+      "true_health": 0.968,
+      "severity": 0.27,
+      "other_causes_raised": [],
+      "false_hours_before_onset": 0
+    },
+    "blockage": {
+      "lead_days": 14.4,
+      "true_health": 1.339,
+      "severity": 0.34,
+      "other_causes_raised": [],
+      "false_hours_before_onset": 0
+    },
+    "clogging": {
+      "lead_days": 13.0,
+      "true_health": 3.441,
+      "severity": 0.14,
+      "other_causes_raised": [],
+      "false_hours_before_onset": 0
+    },
+    "holdout": {
+      "months": 1.87,
+      "false_advisories_per_month": 0.0
+    }
+  },
+  "datasheet": {
+    "wear": {
+      "lead_days": 36.8,
+      "true_health": 0.985,
+      "severity": 0.12,
+      "other_causes_raised": [],
+      "false_hours_before_onset": 0
+    },
+    "blockage": {
+      "lead_days": 13.5,
+      "true_health": 1.374,
+      "severity": 0.37,
+      "other_causes_raised": [],
+      "false_hours_before_onset": 0
+    },
+    "clogging": {
+      "lead_days": 13.0,
+      "true_health": 3.492,
+      "severity": 0.15,
+      "other_causes_raised": [],
+      "false_hours_before_onset": 0
+    },
+    "holdout": {
+      "months": 1.87,
+      "false_advisories_per_month": 0.0
+    }
+  },
+  "edge": {
+    "size_kb": 4.9,
+    "latency_ms_median": 0.017,
+    "latency_ms_p99": 0.018,
+    "budget_ms": 50.0,
+    "max_residual_difference": 7.87e-06,
+    "max_health_difference": 6.92e-07
+  }
+}
