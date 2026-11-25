@@ -9,12 +9,16 @@ Pump Performance Diagnosis watches a variable-speed centrifugal pump through the
 
 ## The Station
 
+<p>
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/plant-dark.png">
   <img src="docs/plant.png" alt="Pump station elevation drawing">
 </picture>
+<br>
+<sub><b>Pump station.</b> Elevation view from the suction tank to the reservoir, drawn to scale from the pump centreline. The reservoir surface stands 12 m above the suction tank's, and the suction tank's 2 m above the pump. Instruments carry their ISA-5.1 tags, and dashed lines are signals from the drive.</sub>
+</p>
 
-An end-suction 3×2–10 pump at 1750 rpm lifts water from a suction tank to an elevated reservoir. Its best efficiency point (BEP) is 57 m³/h at 18.9 m and 68%. A variable-frequency drive sets its speed through the day. Elevations are drawn to scale from the pump centreline, and the instruments carry their ISA-5.1 tags.
+An end-suction 3×2–10 pump at 1750 rpm lifts water from a suction tank to an elevated reservoir. Its best efficiency point (BEP) is 57 m³/h at 18.9 m and 68%. A variable-frequency drive sets its speed through the day.
 
 | Tag | Measures | Used for |
 | :-- | :-- | :-- |
@@ -79,11 +83,14 @@ with $p_v(T)$ from the Antoine equation.
 
 **Measured head.** Both pressure taps are on DN100 pipe at the pump centreline, so the velocity heads cancel and $H_m = (p_d - p_s)/\rho g$.
 
+<p>
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="reports/figures/curves-dark.png">
   <img src="reports/figures/curves.png" alt="Pump and system curves at four speeds">
 </picture>
+<br>
 <sub><b>Pump and system curves.</b> Pump curves at 1400, 1500, 1600 and 1750 rpm against the system curve. At 1750 rpm they cross at the BEP, 57 m³/h and 18.9 m. As the drive slows, the duty point slides down the system curve towards the 12 m static head, where efficiency falls from 68% to 55% at 1400 rpm.</sub>
+</p>
 
 ## The Faults
 
@@ -95,11 +102,14 @@ Each fault is a change to one parameter of these equations, never a new equation
 | Discharge blockage | Fouled pipe or a valve left partly shut | $K_d$ | Doubles |
 | Suction clogging | Debris fills the suction strainer | $K_s$ | ×18 |
 
+<p>
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="reports/figures/faults-dark.png">
   <img src="reports/figures/faults.png" alt="How each fault moves the pump at full speed">
 </picture>
+<br>
 <sub><b>Fault signatures.</b> How each fault at severity 1 moves the pump at 1750 rpm. Wear lowers the pump curve and the duty point slides down the unchanged system curve. Blockage steepens the system curve and the duty point climbs the unchanged pump curve, so head rises while flow falls. Clogging leaves both curves almost in place but collapses the suction head available, from 11.6 m to 7.3 m at the duty point. All three cut flow, so flow alone cannot tell them apart.</sub>
+</p>
 
 ## Where It Fits
 
@@ -129,17 +139,23 @@ The station is simulated minute by minute. Speed follows demand, 1600 to 1750 rp
 
 Only the right rule fired in each run.
 
+<p>
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="reports/figures/advisories-dark.png">
   <img src="reports/figures/advisories.png" alt="When each advisory is raised">
 </picture>
+<br>
 <sub><b>Advisories.</b> The health parameter behind each rule through its fault run, the rule's threshold (dashed) and the period with the advisory raised (shaded). Each advisory comes within hours of the parameter crossing its threshold, 31, 14 and 13 days before the fault reaches maintenance severity.</sub>
+</p>
 
+<p>
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="reports/figures/health-dark.png">
   <img src="reports/figures/health.png" alt="Health estimates against the true value">
 </picture>
+<br>
 <sub><b>Health against the truth.</b> Each fault's health parameter estimated with datasheet physics alone and with the learned unit, against its true value (dashed). With the datasheet alone, the healthy pump already reads 1.7% worn, so the wear advisory comes when the impeller has lost half the head the threshold intends. The learned unit reads 1.000 on the healthy pump, follows head retained to within 0.2%, and the two frictions to within a few percent.</sub>
+</p>
 
 The learned unit matters for when advice arrives, more than for whether it arrives. Pump acceptance standards allow a new pump a few percent of head deviation from its curve. A diagnosis that trusts the datasheet would call such a pump worn on its first day, or need thresholds so loose that real wear goes unseen.
 
@@ -147,11 +163,14 @@ The learned unit matters for when advice arrives, more than for whether it arriv
 
 **Residuals before health.** Comparing each reading with its healthy expectation at the measured flow and speed makes normal operation cancel out. Each fault then moves one residual and leaves the others flat, so the three causes separate without a classifier.
 
+<p>
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="reports/figures/residuals-dark.png">
   <img src="reports/figures/residuals.png" alt="Four residuals through the three fault runs">
 </picture>
+<br>
 <sub><b>Residuals.</b> Hourly means of the four residuals through the three fault runs, against the healthy ±3σ band. Wear lowers head and raises power, blockage raises discharge pressure and clogging lowers suction pressure. The pipe residuals ripple daily, because a pipe loss grows with flow squared and flow follows demand.</sub>
+</p>
 
 **From residuals to health.** A residual is not yet a health number: the same blockage gives a large discharge residual at full daytime flow and a small one at night. Each residual is linear in its fault's parameter, for example $r_d = \Delta K_d\,Q^2$, so the parameter is the least-squares fit over a window,
 
